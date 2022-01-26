@@ -23,17 +23,21 @@ let data = JSON.parse(readJSON);
 
 app.get('/', (req, res, next) => {
   const { priority, label } = req.query;
-  let returnedData = [...data];
+  let returnedData = [];
   
-  if (priority) {
-    returnedData = returnedData.filter((v, i) => {
-      return v.priority === priority.toLocaleLowerCase();
-    });  
-  }
-  if (label) {
-    returnedData = returnedData.filter((v, i) => {
-      return v.label === label.toLocaleLowerCase();
-    });  
+  returnedData = [...data];
+  if (!priority && !label) {
+  } else {
+    if (priority) {
+      returnedData = returnedData.filter((v, i) => {
+        return v.priority === priority.toLocaleLowerCase();
+      });
+    }
+    if (label) {
+      returnedData = returnedData.filter((v, i) => {
+        return v.label.includes(label.toLocaleLowerCase());
+      });
+    }
   }
   
   res.status(200).json({

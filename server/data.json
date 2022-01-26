@@ -3,24 +3,30 @@
     "ID": "1",
     "Title": "Cat",
     "priority": "high",
-    "label": "electrical"
+    "label": ["electrical", "mechanical", "landscape"]
   },
   {
     "ID": "2",
     "Title": "Dog",
     "priority": "mid",
-    "label": "mechanical"
+    "label": ["electrical", "mechanical"]
   },
   {
     "ID": "3",
     "Title": "Mouse",
     "priority": "low",
-    "label": "landscape"
+    "label": ["landscape"]
   },
   {
     "ID": "4",
     "Title": "Cow",
     "priority": "high",
-    "label": "plumbing"
+    "label": ["plumbing", "electrical", "mechanical"]
+  },
+  {
+    "ID": "5",
+    "Title": "Racoon",
+    "priority": "low",
+    "label": ["plumbing"]
   }
 ]

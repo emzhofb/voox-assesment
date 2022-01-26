@@ -4,13 +4,20 @@ import axios from 'axios';
 function App() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
+  const [filterLabel, setFilterLabel] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       let url = `http://localhost:3001/?`;
+      let allFilter = [];
       if (filter) {
-        url += filter;
+        allFilter.push(filter);
       }
+      if (filterLabel) {
+        allFilter.push(filterLabel);
+      }
+
+      url += allFilter.join('&');
       
       try {
         const result = await axios({
@@ -31,17 +38,18 @@ function App() {
     setFilter(`priority=${filter}`);
   }
   function onClickLabel(filter) {
-    setFilter(`label=${filter}`);
+    setFilterLabel(`label=${filter}`);
   }
   function onClickReset() {
     setFilter('');
+    setFilterLabel('');
   }
   
   const listItems = data.map((v) =>
     <tr key={v.ID}>
       <td>{v.Title}</td>
       <td>{v.priority}</td>
-      <td>{v.label}</td>
+      <td>{v.label.join(' ')}</td>
     </tr>
   );
   return (
